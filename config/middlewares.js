@@ -7,19 +7,39 @@ module.exports = [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+          ],
           upgradeInsecureRequests: null,
         },
       },
     },
   },
   'strapi::cors',
-  'strapi::poweredBy',
+  {
+    name: 'strapi::poweredBy',
+    config: {
+      poweredBy: 'Morphose records and agency'
+    },
+  },
   'strapi::logger',
   'strapi::query',
-  'strapi::body',
-  'strapi::session',
+  'strapi::body',{
+    name: 'strapi::session',
+    config: {
+      rolling: true,
+      renew: true
+    },
+  },
   'strapi::favicon',
   'strapi::public',
 ];
